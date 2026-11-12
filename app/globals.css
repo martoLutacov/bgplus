@@ -73,6 +73,9 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  /* място за опашките на g, р, ц, у — иначе градиентът ги изрязва */
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
 }
 
 @utility bg-gold-gradient {

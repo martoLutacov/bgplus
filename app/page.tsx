@@ -9,7 +9,10 @@ import { Providers } from "@/components/providers";
 import { Bento, Statement, Stats } from "@/components/stats-bento";
 import { Faq, Steps } from "@/components/steps-faq";
 import { ZoomText } from "@/components/zoom-text";
+import { adPackages, formatPrice } from "@/data/pricing";
 import { contact, faq, siteUrl } from "@/data/site";
+
+const minPackage = Math.min(...adPackages.map((p) => p.price));
 
 const jsonLd = [
   {
@@ -59,12 +62,15 @@ export default function Page() {
         <Formats />
         <Statement />
         <Presentation />
+        <ZoomText text="Вашият бранд. В ефир." sub={`Рекламни пакети от ${formatPrice(minPackage)} на месец.`} tone="white" />
         <Packages />
         <Calculator />
+        <ZoomText text="Повече от реклама." sub="Спонсорство на предавания с истории, които вдъхновяват." />
         <Sponsorships />
         <PriceList />
         <Steps />
         <Faq />
+        <ZoomText text="Да започваме." sub="Персонална оферта до един работен ден." tone="white" />
         <Contact />
       </main>
       <Footer />

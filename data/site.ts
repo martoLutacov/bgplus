@@ -33,7 +33,6 @@ export const media = {
   heroPoster: "/media/studio.jpg",
   presentationVideo: null as string | null, // напр. "/media/bgplus-presentation.mp4"
   presentationPoster: "/media/studio.jpg",
-  tariffPdf: "/downloads/bgplus-reklamna-tarifa.pdf",
 };
 
 export const stats = [

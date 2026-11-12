@@ -15,7 +15,7 @@ npm run build && npm start
 | **Цени: пакети, спонсорства, пълен ценоразпис, бюджети** | `data/pricing.ts` |
 | Текстове, контакти, статистики, ЧЗВ, стъпки | `data/site.ts` |
 | Снимки и видео (hero рийл, презентация, формати) | `data/site.ts` → `media`, `formats[].image`; файлове в `public/media/` |
-| PDF тарифа и спонсорски брошури | `public/downloads/` |
+| Спонсорски брошури (PDF) | `public/downloads/` |
 | Партньорски лога (ticker) | `data/site.ts` → `partners` (празно = скрито) |
 | SEO / OpenGraph | `app/layout.tsx`; JSON-LD (`Organization`, `FAQPage`) в `app/page.tsx` |
 
