@@ -18,6 +18,7 @@ export const nav = [
   { href: "#formati", label: "Формати" },
   { href: "#paketi", label: "Пакети" },
   { href: "#sponsorstvo", label: "Спонсорство" },
+  { href: "#cenorazpis", label: "Ценоразпис" },
   { href: "#chzv", label: "ЧЗВ" },
 ];
 

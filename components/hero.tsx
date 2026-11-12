@@ -27,7 +27,7 @@ export function Hero() {
   const round = useTransform(t, [0, 1], [0, 44]);
   const clip = useMotionTemplate`inset(${insetY}% ${insetX}% ${insetY}% ${insetX}% round ${round}px)`;
   const imgScale = useTransform(p, [0, 0.75], [1.18, 1]);
-  const veil = useTransform(p, [0, 0.35, 0.75], [0.6, 0.85, 0.35]);
+  const veil = useTransform(p, [0, 0.35, 0.75], [0.62, 0.85, 0.35]);
   const glow = useTransform(t, [0.4, 1], [0, 1]);
 
   // Заглавието се отдалечава
@@ -126,6 +126,11 @@ export function Hero() {
         </motion.div>
 
         <motion.div
+          aria-hidden
+          style={reduce ? undefined : { opacity: contentOpacity }}
+          className="pointer-events-none absolute inset-0 z-[5] bg-[radial-gradient(60%_45%_at_50%_52%,rgba(0,0,0,0.6),transparent_75%)]"
+        />
+        <motion.div
           className="container-page relative z-10 flex h-full flex-col items-center justify-center pb-16 pt-28 text-center"
           style={reduce ? undefined : { opacity: contentOpacity, y: contentY, scale: contentScale, filter: contentFilter }}
         >
@@ -146,7 +151,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 1.2, ease: easeApple, delay: 1.25 }}
-            className="mx-auto mt-7 max-w-[38rem] text-pretty text-[clamp(1.05rem,1.7vw,1.3rem)] leading-relaxed text-white/75"
+            className="mx-auto mt-7 max-w-[38rem] text-pretty text-[clamp(1.1rem,1.8vw,1.4rem)] font-medium leading-relaxed text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.9),0_4px_28px_rgba(0,0,0,0.85)]"
           >
             Превърнете разпознаваемостта в доверие, а доверието — в нови възможности за Вашия бизнес.
           </motion.p>

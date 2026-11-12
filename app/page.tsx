@@ -3,7 +3,7 @@ import { Formats } from "@/components/formats";
 import { Hero } from "@/components/hero";
 import { Nav } from "@/components/nav";
 import { Presentation } from "@/components/presentation";
-import { Packages, Services, Sponsorships } from "@/components/pricing";
+import { Packages, PriceList, Sponsorships } from "@/components/pricing";
 import { Providers } from "@/components/providers";
 import { Bento, Statement, Stats } from "@/components/stats-bento";
 import { Faq, Steps } from "@/components/steps-faq";
@@ -60,7 +60,7 @@ export default function Page() {
         <Presentation />
         <Packages />
         <Sponsorships />
-        <Services />
+        <PriceList />
         <Steps />
         <Faq />
         <Contact />

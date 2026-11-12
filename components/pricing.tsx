@@ -2,7 +2,16 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { adPackages, adPackagesFootnote, formatPrice, services, sponsorships, vatNote } from "@/data/pricing";
+import {
+  adPackages,
+  adPackagesFootnote,
+  formatPrice,
+  formatRowPrice,
+  priceList,
+  priceListFootnote,
+  sponsorships,
+  vatNote,
+} from "@/data/pricing";
 import { useInquiry } from "./inquiry-context";
 import { easeApple, fadeUp, Reveal, rise3d, Stagger } from "./motion";
 import { buttonClass, Eyebrow, Icon, SectionTitle } from "./ui";
@@ -249,71 +258,53 @@ export function Sponsorships() {
   );
 }
 
-export function Services() {
+export function PriceList() {
   const { choose } = useInquiry();
-  const [open, setOpen] = useState<string | null>(services[0].id);
 
   return (
-    <section className="bg-surface py-24 sm:py-32" aria-labelledby="uslugi-title">
-      <div className="container-page grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
-        <Reveal className="lg:sticky lg:top-28 lg:self-start">
-          <Eyebrow>Индивидуални решения</Eyebrow>
-          <SectionTitle id="uslugi-title" className="mt-4" text="Общи рекламни услуги." />
-          <p className="mt-5 text-pretty text-[18px] leading-relaxed text-ink-soft">
-            Не откривате точния формат? Ще разработим предложение, съобразено с Вашия бюджет, аудитория и цели.
-          </p>
-          <button type="button" onClick={() => choose("service:custom")} className={buttonClass("dark", "mt-8")}>
-            Поискайте индивидуална оферта
-            <Icon name="arrow" className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-          </button>
-        </Reveal>
+    <section id="cenorazpis" className="bg-surface py-24 sm:py-32" aria-labelledby="cenorazpis-title">
+      <div className="container-page">
+        <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+          <Reveal className="max-w-3xl">
+            <Eyebrow>Ценоразпис</Eyebrow>
+            <SectionTitle id="cenorazpis-title" className="mt-4" text="Всички цени. На едно място." />
+            <p className="mt-5 max-w-2xl text-pretty text-[18px] leading-relaxed text-ink-soft">{priceListFootnote}</p>
+          </Reveal>
+          <Reveal delay={0.1} className="flex shrink-0 flex-wrap gap-3">
+            <button type="button" onClick={() => choose("service:custom")} className={buttonClass("dark")}>
+              Поискайте индивидуална оферта
+              <Icon name="arrow" className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+            </button>
+          </Reveal>
+        </div>
 
-        <Stagger className="divide-y divide-white/[0.08] rounded-[28px] bg-card px-6 sm:px-8" step={0.05}>
-          {services.map((s) => {
-            const isOpen = open === s.id;
-            return (
-              <motion.div key={s.id} variants={fadeUp}>
-                <h3>
-                  <button
-                    type="button"
-                    onClick={() => setOpen(isOpen ? null : s.id)}
-                    aria-expanded={isOpen}
-                    aria-controls={`svc-${s.id}`}
-                    className="flex w-full items-center justify-between gap-6 py-6 text-left"
-                  >
-                    <span className="text-[18px] font-semibold tracking-[-0.01em]">{s.name}</span>
-                    <span className="flex shrink-0 items-center gap-4">
-                      <span className="hidden text-[14px] text-ink-soft sm:inline">{s.pricing}</span>
-                      <motion.span
-                        animate={{ rotate: isOpen ? 45 : 0 }}
-                        transition={{ duration: 0.4, ease: easeApple }}
-                        className="grid size-8 place-items-center rounded-full bg-mist"
-                      >
-                        <Icon name="plus" className="size-4" />
-                      </motion.span>
-                    </span>
-                  </button>
-                </h3>
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      id={`svc-${s.id}`}
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.45, ease: easeApple }}
-                      className="overflow-hidden"
-                    >
-                      <p className="max-w-xl pb-6 text-[15.5px] leading-relaxed text-ink-soft">
-                        {s.description}
-                        <span className="mt-2 block font-medium text-gold-400 sm:hidden">{s.pricing}</span>
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            );
-          })}
+        <Stagger className="mt-14 grid gap-4 md:grid-cols-2 xl:grid-cols-3" step={0.08}>
+          {priceList.map((g) => (
+            <motion.article
+              key={g.id}
+              variants={rise3d}
+              className="flex flex-col rounded-[28px] bg-card p-7 ring-1 ring-white/[0.06] transition-colors duration-500 hover:ring-gold-400/30 sm:p-8"
+            >
+              <h3 className="text-[21px] font-semibold leading-tight tracking-headline">{g.title}</h3>
+              {g.note && <p className="mt-2 text-[14px] leading-snug text-ink-soft">{g.note}</p>}
+              <dl className="mt-6 flex-1 divide-y divide-white/[0.07]">
+                {g.rows.map((r) => (
+                  <div key={r.name} className="flex items-baseline justify-between gap-4 py-3.5">
+                    <dt className="min-w-0">
+                      <span className="block text-[15.5px] font-medium text-fg">{r.name}</span>
+                      {r.detail && <span className="mt-0.5 block text-[13px] leading-snug text-ink-soft">{r.detail}</span>}
+                    </dt>
+                    <dd className="shrink-0 text-right">
+                      <span className="text-gold-gradient whitespace-nowrap text-[17px] font-semibold tabular-nums">
+                        {formatRowPrice(r.price)}
+                      </span>
+                      {r.unit && <span className="ml-1 text-[13px] text-ink-soft">{r.unit}</span>}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </motion.article>
+          ))}
         </Stagger>
       </div>
     </section>
