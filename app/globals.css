@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+
+  --color-ink: #1d1d1f;
+  --color-ink-soft: #6e6e73;
+  --color-mist: #f5f5f7;
+  --color-line: #d2d2d7;
+
+  /* BG+ брандово злато (от логото) */
+  --color-gold-200: #f1e3a8;
+  --color-gold-300: #e6cf86;
+  --color-gold-400: #d4b26a;
+  --color-gold-500: #c39a55;
+  --color-gold-600: #a8813f;
+  --color-gold-700: #8a6a2f;
+  --color-gold-800: #6b5124;
+
+  --ease-apple: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-padding-top: 4.5rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background: #ffffff;
+    color: var(--color-ink);
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  ::selection {
+    background: var(--color-gold-300);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold-600);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+@utility tracking-headline {
+  letter-spacing: -0.02em;
+}
+
+@utility tracking-display {
+  letter-spacing: -0.035em;
+}
+
+@utility text-gold-gradient {
+  background: linear-gradient(120deg, #a8813f 0%, #d4b26a 45%, #e6cf86 70%, #b88a44 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-gold-gradient {
+  background: linear-gradient(135deg, #b88a44 0%, #d4b26a 55%, #e9d58a 100%);
+}
+
+@utility container-page {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  @media (width >= 48rem) {
+    padding-inline: 2.5rem;
+  }
+}
+
+/* Безкраен ticker за партньорски лога */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none !important;
+  }
+}
