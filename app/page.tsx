@@ -56,21 +56,28 @@ export default function Page() {
       <Nav />
       <main id="main">
         <Hero />
+        <ZoomText id="stats-title" text="В цяла България." sub="95% национално разпространение и ≈800 000 зрители месечно." />
         <Stats />
-        <ZoomText text="В цяла България." sub="95% национално разпространение. Една история — Вашата." />
+        <ZoomText id="predimstva-title" text="Защо БГ+?" sub="Повече от рекламно време. Медиен партньор за Вашия растеж." tone="white" />
         <Bento />
+        <ZoomText id="formati-title" text="Рекламни формати." sub="Изберете начина, по който да разкажете своята история." />
         <Formats />
         <Statement />
+        <ZoomText id="prezentaciya-title" text="Студиа. Водещи. Доверие." sub="Предавания, които изграждат авторитет." tone="white" />
         <Presentation />
-        <ZoomText text="Вашият бранд. В ефир." sub={`Рекламни пакети от ${formatPrice(minPackage)} на месец.`} tone="white" />
+        <ZoomText id="paketi-title" text="Вашият бранд. В ефир." sub={`Рекламни пакети от ${formatPrice(minPackage)} на месец.`} />
         <Packages />
+        <ZoomText id="kalkulator-title" text="Сглобете кампанията си." sub="Изберете излъчванията и вижте цената веднага." tone="white" />
         <Calculator />
-        <ZoomText text="Повече от реклама." sub="Спонсорство на предавания с истории, които вдъхновяват." />
+        <ZoomText id="sponsorstvo-title" text="Повече от реклама." sub="Спонсорство на предавания с истории, които вдъхновяват." />
         <Sponsorships />
+        <ZoomText id="cenorazpis-title" text="Всички цени." sub="На едно място. Без изненади." tone="white" />
         <PriceList />
+        <ZoomText id="steps-title" text="Три стъпки." sub="До Вашата кампания в ефир." />
         <Steps />
+        <ZoomText id="chzv-title" text="Въпроси?" sub="Ето най-честите." tone="white" />
         <Faq />
-        <ZoomText text="Да започваме." sub="Персонална оферта до един работен ден." tone="white" />
+        <ZoomText id="kontakt-title" text="Да започваме." sub="Персонална оферта до един работен ден." />
         <Contact />
       </main>
       <Footer />

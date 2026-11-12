@@ -17,17 +17,8 @@ export function Presentation() {
   return (
     <section className="overflow-hidden bg-black py-24 text-white sm:py-32" aria-labelledby="prezentaciya-title">
       <div className="container-page">
-        <Reveal className="mx-auto max-w-3xl text-center">
-          <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-gold-300">Медийна презентация</p>
-          <h2
-            id="prezentaciya-title"
-            className="mt-4 text-balance text-[clamp(2rem,4.6vw,3.5rem)] font-semibold leading-[1.06] tracking-headline"
-          >
-            Студиа, водещи и предавания, които изграждат доверие.
-          </h2>
-        </Reveal>
 
-        <div ref={ref} className="relative mx-auto mt-14 max-w-5xl">
+        <div ref={ref} className="relative mx-auto max-w-5xl">
           <motion.div
             aria-hidden
             style={{ opacity: glow }}

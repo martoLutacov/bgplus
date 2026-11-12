@@ -138,18 +138,12 @@ export function Contact() {
     <section id="kontakt" className="bg-black py-24 sm:py-32" aria-labelledby="kontakt-title">
       <div className="container-page">
         <Reveal className="mx-auto max-w-3xl text-center">
-          <h2
-            id="kontakt-title"
-            className="text-balance text-[clamp(2.2rem,5.4vw,4.25rem)] font-semibold leading-[1.04] tracking-display"
-          >
-            Нека Вашият бранд бъде част от <span className="text-gold-gradient">следващата добра история.</span>
-          </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-pretty text-[18px] leading-relaxed text-ink-soft">
+          <p className="mx-auto max-w-2xl text-pretty text-[18px] leading-relaxed text-ink-soft">
             Свържете се с нас за персонална оферта, медийна консултация или предложение за спонсорство.
           </p>
         </Reveal>
 
-        <div className="mt-16 grid gap-6 lg:grid-cols-[0.85fr_1.4fr]">
+        <div className="mt-12 grid gap-6 lg:grid-cols-[0.85fr_1.4fr]">
           {/* Контакт */}
           <Reveal className="relative overflow-hidden rounded-[32px] bg-feature p-8 text-white sm:p-10">
             <div aria-hidden className="bg-gold-gradient absolute -right-24 -top-24 size-72 rounded-full opacity-25 blur-3xl" />

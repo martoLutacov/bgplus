@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { calculator as c, formatPrice, groupDigits } from "@/data/pricing";
 import { useInquiry } from "./inquiry-context";
 import { easeApple, Reveal } from "./motion";
-import { buttonClass, Eyebrow, Icon, SectionTitle } from "./ui";
+import { buttonClass, Icon } from "./ui";
 
 /** Число, което плавно „доплува“ до новата стойност */
 function Rolling({ value, className }: { value: number; className?: string }) {
@@ -128,9 +128,7 @@ export function Calculator() {
     <section id="kalkulator" className="bg-black py-24 sm:py-32" aria-labelledby="kalkulator-title">
       <div className="container-page">
         <Reveal className="mx-auto max-w-3xl text-center">
-          <Eyebrow>Рекламен калкулатор · 30-секунден клип</Eyebrow>
-          <SectionTitle id="kalkulator-title" className="mt-4" text="Сглобете своята кампания." />
-          <p className="mt-5 text-pretty text-[18px] leading-relaxed text-ink-soft">
+                    <p className="text-pretty text-[18px] leading-relaxed text-ink-soft">
             Изберете колко пъти седмично да се излъчва клипът — в праймтайм и извън него — и вижте месечната стойност веднага.
           </p>
         </Reveal>
