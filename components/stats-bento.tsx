@@ -4,16 +4,12 @@ import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } f
 import { useRef, type MouseEvent } from "react";
 import { pillars, statement, stats } from "@/data/site";
 import { CountUp, Reveal, rise3d, Stagger, StaggerItem } from "./motion";
-import { Eyebrow, Icon, SectionTitle } from "./ui";
+import { Eyebrow, Icon } from "./ui";
 
 export function Stats() {
   return (
     <section className="bg-black py-24 sm:py-32" aria-labelledby="stats-title">
       <div className="container-page">
-        <Reveal className="mx-auto max-w-3xl text-center">
-          <Eyebrow>Обхват</Eyebrow>
-          <SectionTitle id="stats-title" className="mt-4" text="Национално присъствие. Реални възможности за Вашия бранд." />
-        </Reveal>
 
         <Stagger className="mt-16 grid gap-4 sm:grid-cols-3" step={0.12}>
           {stats.map((s) => (
@@ -89,10 +85,6 @@ export function Bento() {
   return (
     <section id="predimstva" className="bg-surface py-24 sm:py-32" aria-labelledby="predimstva-title">
       <div className="container-page">
-        <Reveal className="max-w-3xl">
-          <Eyebrow>Защо БГ+</Eyebrow>
-          <SectionTitle id="predimstva-title" className="mt-4" text="Повече от рекламно време. Медиен партньор за Вашия растеж." />
-        </Reveal>
 
         <Stagger className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-6" step={0.09}>
           {pillars.map((p, i) => {

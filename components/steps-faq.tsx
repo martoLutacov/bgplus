@@ -4,7 +4,7 @@ import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } fr
 import { useRef, useState } from "react";
 import { faq, partners, steps } from "@/data/site";
 import { easeApple, fadeUp, Reveal, Stagger } from "./motion";
-import { Eyebrow, Icon, SectionTitle } from "./ui";
+import { Icon } from "./ui";
 
 export function Steps() {
   const ref = useRef<HTMLDivElement>(null);
@@ -15,10 +15,6 @@ export function Steps() {
   return (
     <section className="bg-black py-24 sm:py-32" aria-labelledby="steps-title">
       <div className="container-page">
-        <Reveal className="mx-auto max-w-3xl text-center">
-          <Eyebrow>Как да започнете</Eyebrow>
-          <SectionTitle id="steps-title" className="mt-4" text="Три стъпки до Вашата кампания." />
-        </Reveal>
 
         <div ref={ref} className="relative mt-16">
           {/* Линия, която се „изчертава“ при скрол: вертикална на мобилно, хоризонтална на десктоп */}
@@ -56,10 +52,6 @@ export function Faq() {
   return (
     <section id="chzv" className="bg-surface py-24 sm:py-32" aria-labelledby="chzv-title">
       <div className="container-page max-w-4xl">
-        <Reveal className="text-center">
-          <Eyebrow>ЧЗВ</Eyebrow>
-          <SectionTitle id="chzv-title" className="mt-4" text="Често задавани въпроси." />
-        </Reveal>
 
         <Stagger className="mt-14 space-y-3" step={0.06}>
           {faq.map((item, i) => {

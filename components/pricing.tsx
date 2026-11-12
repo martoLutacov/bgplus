@@ -14,7 +14,7 @@ import {
 } from "@/data/pricing";
 import { useInquiry } from "./inquiry-context";
 import { easeApple, fadeUp, Reveal, rise3d, Stagger } from "./motion";
-import { buttonClass, Eyebrow, Icon, SectionTitle } from "./ui";
+import { buttonClass, Icon } from "./ui";
 
 export function Packages() {
   const { choose } = useInquiry();
@@ -22,9 +22,7 @@ export function Packages() {
     <section id="paketi" className="bg-surface py-24 sm:py-32" aria-labelledby="paketi-title">
       <div className="container-page">
         <Reveal className="mx-auto max-w-3xl text-center">
-          <Eyebrow>Рекламни пакети · 30-секунден клип</Eyebrow>
-          <SectionTitle id="paketi-title" className="mt-4" text="Изберете присъствието, което отговаря на целите Ви." />
-          <p className="mt-5 text-[17px] text-ink-soft">{vatNote}</p>
+                    <p className="mt-5 text-[17px] text-ink-soft">{vatNote}</p>
         </Reveal>
 
         <Stagger className="mt-16 grid items-stretch gap-5 lg:grid-cols-3" step={0.12}>
@@ -241,9 +239,7 @@ export function Sponsorships() {
     <section id="sponsorstvo" className="bg-black py-24 sm:py-32" aria-labelledby="sponsorstvo-title">
       <div className="container-page">
         <Reveal className="max-w-3xl">
-          <Eyebrow>Спонсорство на предавания</Eyebrow>
-          <SectionTitle id="sponsorstvo-title" className="mt-4" text="Вашият бранд като партньор на съдържание с ценност." />
-          <p className="mt-5 max-w-2xl text-pretty text-[18px] leading-relaxed text-ink-soft">
+                    <p className="max-w-2xl text-pretty text-[18px] leading-relaxed text-ink-soft">
             Присъствайте последователно във формат, близък до Вашите ценности, продукти и аудитория. Конкретният спонсорски
             инвентар и ексклузивните права се определят в индивидуалния договор.
           </p>
@@ -266,9 +262,7 @@ export function PriceList() {
       <div className="container-page">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <Reveal className="max-w-3xl">
-            <Eyebrow>Ценоразпис</Eyebrow>
-            <SectionTitle id="cenorazpis-title" className="mt-4" text="Всички цени. На едно място." />
-            <p className="mt-5 max-w-2xl text-pretty text-[18px] leading-relaxed text-ink-soft">{priceListFootnote}</p>
+                        <p className="max-w-2xl text-pretty text-[18px] leading-relaxed text-ink-soft">{priceListFootnote}</p>
           </Reveal>
           <Reveal delay={0.1} className="flex shrink-0 flex-wrap gap-3">
             <button type="button" onClick={() => choose("service:custom")} className={buttonClass("dark")}>

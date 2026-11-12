@@ -3,8 +3,6 @@
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { formats } from "@/data/site";
-import { Reveal } from "./motion";
-import { Eyebrow, SectionTitle } from "./ui";
 
 function useMedia(query: string) {
   const [match, setMatch] = useState(false);
@@ -57,14 +55,6 @@ function FormatCard({ f, i }: { f: (typeof formats)[number]; i: number }) {
   );
 }
 
-function Header() {
-  return (
-    <Reveal className="max-w-3xl">
-      <Eyebrow>Рекламни формати</Eyebrow>
-      <SectionTitle id="formati-title" className="mt-4" text="Изберете начина, по който да разкажете своята история." />
-    </Reveal>
-  );
-}
 
 export function Formats() {
   const reduce = useReducedMotion();
@@ -100,13 +90,10 @@ export function Formats() {
     >
       {pinned ? (
         <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden pt-16">
-          <div className="container-page">
-            <Header />
-          </div>
           <motion.div
             ref={track}
             style={{ x }}
-            className="mt-12 flex w-max gap-5 pl-[max(2.5rem,calc((100vw-80rem)/2+2.5rem))] will-change-transform"
+            className="flex w-max gap-5 pl-[max(2.5rem,calc((100vw-80rem)/2+2.5rem))] will-change-transform"
           >
             {formats.map((f, i) => (
               <div key={f.title} className="w-[min(30rem,40vw)] shrink-0">
@@ -122,10 +109,7 @@ export function Formats() {
         </div>
       ) : (
         <>
-          <div className="container-page">
-            <Header />
-          </div>
-          <div className="mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-6 [scrollbar-width:none] md:px-10">
+          <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-6 [scrollbar-width:none] md:px-10">
             {formats.map((f, i) => (
               <div key={f.title} className="w-[82vw] max-w-[26rem] shrink-0 snap-center">
                 <FormatCard f={f} i={i} />
