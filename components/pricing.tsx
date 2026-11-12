@@ -4,19 +4,17 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { adPackages, adPackagesFootnote, formatPrice, services, sponsorships, vatNote } from "@/data/pricing";
 import { useInquiry } from "./inquiry-context";
-import { easeApple, fadeUp, Reveal, Stagger } from "./motion";
+import { easeApple, fadeUp, Reveal, rise3d, Stagger } from "./motion";
 import { buttonClass, Eyebrow, Icon, SectionTitle } from "./ui";
 
 export function Packages() {
   const { choose } = useInquiry();
   return (
-    <section id="paketi" className="bg-mist py-24 sm:py-32" aria-labelledby="paketi-title">
+    <section id="paketi" className="bg-surface py-24 sm:py-32" aria-labelledby="paketi-title">
       <div className="container-page">
         <Reveal className="mx-auto max-w-3xl text-center">
           <Eyebrow>Рекламни пакети · 30-секунден клип</Eyebrow>
-          <SectionTitle className="mt-4">
-            <span id="paketi-title">Изберете присъствието, което отговаря на целите Ви.</span>
-          </SectionTitle>
+          <SectionTitle id="paketi-title" className="mt-4" text="Изберете присъствието, което отговаря на целите Ви." />
           <p className="mt-5 text-[17px] text-ink-soft">{vatNote}</p>
         </Reveal>
 
@@ -24,13 +22,13 @@ export function Packages() {
           {adPackages.map((p) => (
             <motion.article
               key={p.id}
-              variants={fadeUp}
+              variants={rise3d}
               whileHover={{ y: -6 }}
               transition={{ type: "spring", stiffness: 300, damping: 26 }}
               className={`relative flex flex-col rounded-[28px] p-8 sm:p-10 ${
                 p.featured
-                  ? "bg-ink text-white shadow-[0_40px_80px_-40px_rgba(0,0,0,0.6)] lg:-my-4 lg:py-14"
-                  : "bg-white text-ink"
+                  ? "bg-feature text-white shadow-[0_40px_80px_-40px_rgba(0,0,0,0.6)] lg:-my-4 lg:py-14"
+                  : "bg-card text-fg"
               }`}
             >
               {p.featured && (
@@ -44,7 +42,7 @@ export function Packages() {
                   </span>
                 </>
               )}
-              <p className={`text-[13px] font-semibold uppercase tracking-[0.12em] ${p.featured ? "text-gold-300" : "text-gold-700"}`}>
+              <p className={`text-[13px] font-semibold uppercase tracking-[0.12em] ${p.featured ? "text-gold-300" : "text-gold-400"}`}>
                 Пакет
               </p>
               <h3 className="mt-2 text-[28px] font-semibold leading-tight tracking-headline">„{p.name}“</h3>
@@ -54,7 +52,7 @@ export function Packages() {
                 </span>
                 <span className={p.featured ? "text-white/60" : "text-ink-soft"}>/ {p.period}</span>
               </p>
-              <p className={`mt-3 text-[17px] font-medium ${p.featured ? "text-white" : "text-ink"}`}>
+              <p className={`mt-3 text-[17px] font-medium ${p.featured ? "text-white" : "text-fg"}`}>
                 {p.airings} излъчвания месечно
               </p>
               <p className={`mt-5 flex-1 text-pretty text-[15.5px] leading-relaxed ${p.featured ? "text-white/65" : "text-ink-soft"}`}>
@@ -88,15 +86,15 @@ function SponsorCard({ s, index }: { s: (typeof sponsorships)[number]; index: nu
 
   return (
     <Reveal
-      className={`relative overflow-hidden rounded-[32px] ${dark ? "bg-ink text-white" : "bg-white text-ink ring-1 ring-black/[0.06]"}`}
+      className={`relative overflow-hidden rounded-[32px] ${dark ? "bg-feature text-white" : "bg-card text-fg ring-1 ring-white/[0.06]"}`}
     >
       <div className="grid gap-10 p-8 sm:p-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
         <div>
-          <p className={`text-[13px] font-semibold uppercase tracking-[0.12em] ${dark ? "text-gold-300" : "text-gold-700"}`}>
+          <p className={`text-[13px] font-semibold uppercase tracking-[0.12em] ${dark ? "text-gold-300" : "text-gold-400"}`}>
             {index === 0 ? "Специално спонсорско предложение" : "Дългосрочно партньорство"}
           </p>
           <h3 className="mt-3 text-[clamp(2.2rem,4vw,3.25rem)] font-semibold leading-[1.04] tracking-display">„{s.name}“</h3>
-          <p className={`mt-3 text-[19px] font-medium leading-snug ${dark ? "text-white/85" : "text-ink"}`}>{s.tagline}</p>
+          <p className={`mt-3 text-[19px] font-medium leading-snug ${dark ? "text-white/85" : "text-fg"}`}>{s.tagline}</p>
           <p className={`mt-5 text-pretty text-[15.5px] leading-relaxed ${dark ? "text-white/60" : "text-ink-soft"}`}>{s.description}</p>
 
           <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-3">
@@ -112,8 +110,8 @@ function SponsorCard({ s, index }: { s: (typeof sponsorships)[number]; index: nu
 
           <ul className="mt-8 space-y-2.5">
             {s.includes.map((item) => (
-              <li key={item} className={`flex gap-3 text-[15px] ${dark ? "text-white/80" : "text-ink"}`}>
-                <Icon name="check" className={`mt-0.5 size-[18px] shrink-0 ${dark ? "text-gold-300" : "text-gold-600"}`} />
+              <li key={item} className={`flex gap-3 text-[15px] ${dark ? "text-white/80" : "text-fg"}`}>
+                <Icon name="check" className={`mt-0.5 size-[18px] shrink-0 ${dark ? "text-gold-300" : "text-gold-400"}`} />
                 {item}
               </li>
             ))}
@@ -159,7 +157,7 @@ function SponsorCard({ s, index }: { s: (typeof sponsorships)[number]; index: nu
                   <span className="relative flex flex-wrap items-center gap-2 font-medium">
                     <span
                       className={`grid size-[18px] place-items-center rounded-full ring-1 transition-colors ${
-                        active ? "bg-gold-gradient ring-transparent" : dark ? "ring-white/30" : "ring-black/20"
+                        active ? "bg-gold-gradient ring-transparent" : dark ? "ring-white/30" : "ring-white/20"
                       }`}
                     >
                       {active && <span className="size-1.5 rounded-full bg-ink" />}
@@ -168,7 +166,7 @@ function SponsorCard({ s, index }: { s: (typeof sponsorships)[number]; index: nu
                     {t.badge && (
                       <span
                         className={`rounded-full px-2 py-0.5 text-[11px] font-semibold ${
-                          dark ? "bg-gold-400/15 text-gold-300" : "bg-gold-200/60 text-gold-800"
+                          dark ? "bg-gold-400/15 text-gold-300" : "bg-gold-400/15 text-gold-300"
                         }`}
                       >
                         {t.badge}
@@ -216,7 +214,7 @@ function SponsorCard({ s, index }: { s: (typeof sponsorships)[number]; index: nu
               <a
                 href={s.brochure}
                 download
-                className={buttonClass(dark ? "outline-light" : "ghost", `!py-3.5 ${dark ? "" : "ring-1 ring-inset ring-black/10"}`)}
+                className={buttonClass(dark ? "outline-light" : "ghost", `!py-3.5 ${dark ? "" : "ring-1 ring-inset ring-white/10"}`)}
               >
                 <Icon name="download" className="size-4" />
                 Брошура
@@ -231,13 +229,11 @@ function SponsorCard({ s, index }: { s: (typeof sponsorships)[number]; index: nu
 
 export function Sponsorships() {
   return (
-    <section id="sponsorstvo" className="bg-white py-24 sm:py-32" aria-labelledby="sponsorstvo-title">
+    <section id="sponsorstvo" className="bg-black py-24 sm:py-32" aria-labelledby="sponsorstvo-title">
       <div className="container-page">
         <Reveal className="max-w-3xl">
           <Eyebrow>Спонсорство на предавания</Eyebrow>
-          <SectionTitle className="mt-4">
-            <span id="sponsorstvo-title">Вашият бранд като партньор на съдържание с ценност.</span>
-          </SectionTitle>
+          <SectionTitle id="sponsorstvo-title" className="mt-4" text="Вашият бранд като партньор на съдържание с ценност." />
           <p className="mt-5 max-w-2xl text-pretty text-[18px] leading-relaxed text-ink-soft">
             Присъствайте последователно във формат, близък до Вашите ценности, продукти и аудитория. Конкретният спонсорски
             инвентар и ексклузивните права се определят в индивидуалния договор.
@@ -258,13 +254,11 @@ export function Services() {
   const [open, setOpen] = useState<string | null>(services[0].id);
 
   return (
-    <section className="bg-mist py-24 sm:py-32" aria-labelledby="uslugi-title">
+    <section className="bg-surface py-24 sm:py-32" aria-labelledby="uslugi-title">
       <div className="container-page grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
         <Reveal className="lg:sticky lg:top-28 lg:self-start">
           <Eyebrow>Индивидуални решения</Eyebrow>
-          <SectionTitle className="mt-4">
-            <span id="uslugi-title">Общи рекламни услуги.</span>
-          </SectionTitle>
+          <SectionTitle id="uslugi-title" className="mt-4" text="Общи рекламни услуги." />
           <p className="mt-5 text-pretty text-[18px] leading-relaxed text-ink-soft">
             Не откривате точния формат? Ще разработим предложение, съобразено с Вашия бюджет, аудитория и цели.
           </p>
@@ -274,7 +268,7 @@ export function Services() {
           </button>
         </Reveal>
 
-        <Stagger className="divide-y divide-black/[0.08] rounded-[28px] bg-white px-6 sm:px-8" step={0.05}>
+        <Stagger className="divide-y divide-white/[0.08] rounded-[28px] bg-card px-6 sm:px-8" step={0.05}>
           {services.map((s) => {
             const isOpen = open === s.id;
             return (
@@ -312,7 +306,7 @@ export function Services() {
                     >
                       <p className="max-w-xl pb-6 text-[15.5px] leading-relaxed text-ink-soft">
                         {s.description}
-                        <span className="mt-2 block font-medium text-gold-700 sm:hidden">{s.pricing}</span>
+                        <span className="mt-2 block font-medium text-gold-400 sm:hidden">{s.pricing}</span>
                       </p>
                     </motion.div>
                   )}

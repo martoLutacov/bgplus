@@ -7,6 +7,7 @@ import { Packages, Services, Sponsorships } from "@/components/pricing";
 import { Providers } from "@/components/providers";
 import { Bento, Statement, Stats } from "@/components/stats-bento";
 import { Faq, Steps } from "@/components/steps-faq";
+import { ZoomText } from "@/components/zoom-text";
 import { contact, faq, siteUrl } from "@/data/site";
 
 const jsonLd = [
@@ -52,6 +53,7 @@ export default function Page() {
       <main id="main">
         <Hero />
         <Stats />
+        <ZoomText text="В цяла България." sub="95% национално разпространение. Една история — Вашата." />
         <Bento />
         <Formats />
         <Statement />

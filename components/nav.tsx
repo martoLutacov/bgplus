@@ -45,7 +45,7 @@ export function Nav() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.9, ease: easeApple, delay: 0.2 }}
         className={`border-b backdrop-blur-xl backdrop-saturate-150 transition-colors duration-500 ${
-          dark ? "border-white/10 bg-black/25" : "border-black/[0.06] bg-white/75"
+          dark ? "border-transparent bg-black/10" : "border-white/[0.08] bg-black/70"
         }`}
       >
         <nav className="container-page flex h-16 items-center justify-between gap-6" aria-label="Основна навигация">
@@ -54,14 +54,7 @@ export function Nav() {
             <img
               src="/logo-light.png"
               alt="TV BG+"
-              className={`absolute h-9 w-auto transition-opacity duration-500 ${dark ? "opacity-100" : "opacity-0"}`}
-            />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/logo.png"
-              alt=""
-              aria-hidden
-              className={`absolute h-9 w-auto transition-opacity duration-500 ${dark ? "opacity-0" : "opacity-100"}`}
+              className="absolute h-9 w-auto"
             />
           </a>
 
@@ -73,15 +66,15 @@ export function Nav() {
                   <a
                     href={item.href}
                     className={`relative z-10 block rounded-full px-4 py-2 text-[13.5px] font-medium transition-colors duration-300 ${
-                      dark ? "text-white/80 hover:text-white" : "text-ink/70 hover:text-ink"
-                    } ${isActive ? (dark ? "text-white" : "text-ink") : ""}`}
+                      "text-white/70 hover:text-white"
+                    } ${isActive ? "!text-white" : ""}`}
                   >
                     {item.label}
                   </a>
                   {isActive && (
                     <motion.span
                       layoutId="nav-pill"
-                      className={`absolute inset-0 rounded-full ${dark ? "bg-white/15" : "bg-black/[0.05]"}`}
+                      className={`absolute inset-0 rounded-full bg-white/[0.12]`}
                       transition={{ type: "spring", stiffness: 380, damping: 34 }}
                     />
                   )}
@@ -95,7 +88,7 @@ export function Nav() {
               href={contact.phoneHref}
               aria-label={`Обадете се: ${contact.phoneDisplay}`}
               className={`grid size-10 place-items-center rounded-full transition-colors duration-300 ${
-                dark ? "text-white hover:bg-white/15" : "text-ink hover:bg-black/5"
+                "text-white hover:bg-white/15"
               }`}
             >
               <Icon name="phone" className="size-[18px]" />
@@ -110,7 +103,7 @@ export function Nav() {
               aria-controls="mobile-menu"
               aria-label={open ? "Затвори менюто" : "Отвори менюто"}
               className={`grid size-10 place-items-center rounded-full lg:hidden ${
-                dark ? "text-white hover:bg-white/15" : "text-ink hover:bg-black/5"
+                "text-white hover:bg-white/15"
               }`}
             >
               <span className="relative block h-3 w-[18px]">
@@ -138,7 +131,7 @@ export function Nav() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-x-0 bottom-0 top-16 bg-white/95 backdrop-blur-xl lg:hidden"
+            className="fixed inset-x-0 bottom-0 top-16 bg-black/95 backdrop-blur-xl lg:hidden"
           >
             <motion.ul
               className="container-page flex flex-col pt-6"
@@ -153,12 +146,12 @@ export function Nav() {
                     hidden: { opacity: 0, y: -8 },
                     show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: easeApple } },
                   }}
-                  className="border-b border-black/[0.06]"
+                  className="border-b border-white/[0.06]"
                 >
                   <a
                     href={item.href}
                     onClick={() => setOpen(false)}
-                    className="block py-4 text-[26px] font-semibold tracking-headline text-ink"
+                    className="block py-4 text-[26px] font-semibold tracking-headline text-fg"
                   >
                     {item.label}
                   </a>

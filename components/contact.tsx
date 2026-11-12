@@ -12,7 +12,7 @@ import { buttonClass, Icon } from "./ui";
 type Status = "idle" | "loading" | "success" | "mailto" | "error";
 
 const inputCls =
-  "peer w-full rounded-2xl border bg-white px-4 pb-2.5 pt-6 text-[16px] text-ink outline-none transition-[border-color,box-shadow] duration-300 placeholder:text-transparent focus:border-gold-500 focus:shadow-[0_0_0_4px_rgba(212,178,106,0.2)]";
+  "peer w-full rounded-2xl border bg-card px-4 pb-2.5 pt-6 text-[16px] text-fg outline-none transition-[border-color,box-shadow] duration-300 placeholder:text-transparent focus:border-gold-500 focus:shadow-[0_0_0_4px_rgba(212,178,106,0.2)]";
 
 function Field({
   id,
@@ -43,7 +43,7 @@ function Field({
             initial={{ opacity: 0, y: -4, height: 0 }}
             animate={{ opacity: 1, y: 0, height: "auto" }}
             exit={{ opacity: 0, y: -4, height: 0 }}
-            className="px-1 pt-1.5 text-[13px] text-[#c2410c]"
+            className="px-1 pt-1.5 text-[13px] text-[#ff8a5c]"
           >
             {error}
           </motion.p>
@@ -125,12 +125,12 @@ export function Contact() {
     }
   };
 
-  const border = (k: keyof Inquiry) => (errors[k] ? "border-[#c2410c]" : "border-black/10");
+  const border = (k: keyof Inquiry) => (errors[k] ? "border-[#ff8a5c]" : "border-white/10");
   const aria = (k: keyof Inquiry) =>
     errors[k] ? { "aria-invalid": true as const, "aria-describedby": `f-${k}-err` } : {};
 
   return (
-    <section id="kontakt" className="bg-white py-24 sm:py-32" aria-labelledby="kontakt-title">
+    <section id="kontakt" className="bg-black py-24 sm:py-32" aria-labelledby="kontakt-title">
       <div className="container-page">
         <Reveal className="mx-auto max-w-3xl text-center">
           <h2
@@ -146,7 +146,7 @@ export function Contact() {
 
         <div className="mt-16 grid gap-6 lg:grid-cols-[0.85fr_1.4fr]">
           {/* Контакт */}
-          <Reveal className="relative overflow-hidden rounded-[32px] bg-ink p-8 text-white sm:p-10">
+          <Reveal className="relative overflow-hidden rounded-[32px] bg-feature p-8 text-white sm:p-10">
             <div aria-hidden className="bg-gold-gradient absolute -right-24 -top-24 size-72 rounded-full opacity-25 blur-3xl" />
             <div className="relative flex h-full flex-col">
               <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-gold-300">
@@ -235,7 +235,7 @@ export function Contact() {
                       setData(emptyInquiry);
                       setSelected("");
                     }}
-                    className={buttonClass("ghost", "mt-8 ring-1 ring-inset ring-black/10")}
+                    className={buttonClass("ghost", "mt-8 ring-1 ring-inset ring-white/10")}
                   >
                     Ново запитване
                   </button>
@@ -331,7 +331,7 @@ export function Contact() {
                         id="f-budget"
                         value={data.budget}
                         onChange={(e) => set("budget", e.target.value)}
-                        className={`${inputCls} border-black/10 appearance-none pr-10`}
+                        className={`${inputCls} border-white/10 appearance-none pr-10`}
                       >
                         <option value="">Изберете…</option>
                         {budgetRanges.map((b) => (
@@ -370,7 +370,7 @@ export function Contact() {
                       Съгласен/на съм ТВ БГ+ да използва данните ми, за да се свърже с мен във връзка с това запитване.
                     </label>
                     {errors.consent && (
-                      <p id="f-consent-err" className="px-1 pt-1.5 text-[13px] text-[#c2410c]">
+                      <p id="f-consent-err" className="px-1 pt-1.5 text-[13px] text-[#ff8a5c]">
                         {errors.consent}
                       </p>
                     )}
@@ -400,7 +400,7 @@ export function Contact() {
                       )}
                     </button>
                     {status === "error" && (
-                      <p className="text-[14px] text-[#c2410c]" role="alert">
+                      <p className="text-[14px] text-[#ff8a5c]" role="alert">
                         Възникна грешка. Моля, опитайте отново или се обадете на {contact.phoneDisplay}.
                       </p>
                     )}
@@ -417,21 +417,21 @@ export function Contact() {
 
 export function Footer() {
   return (
-    <footer className="border-t border-black/[0.06] bg-mist">
+    <footer className="border-t border-white/[0.06] bg-surface">
       <div className="container-page flex flex-col items-center justify-between gap-6 py-10 text-[13px] text-ink-soft sm:flex-row">
         <div className="flex items-center gap-4">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.png" alt="TV BG+" className="h-8 w-auto" />
+          <img src="/logo-light.png" alt="TV BG+" className="h-8 w-auto" />
           <span>© {new Date().getFullYear()} Национална телевизия БГ+</span>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-          <a href={contact.phoneHref} className="hover:text-ink">
+          <a href={contact.phoneHref} className="hover:text-fg">
             {contact.phoneDisplay}
           </a>
-          <a href={`mailto:${contact.email}`} className="hover:text-ink">
+          <a href={`mailto:${contact.email}`} className="hover:text-fg">
             {contact.email}
           </a>
-          <a href="https://bgplus.bg" className="hover:text-ink">
+          <a href="https://bgplus.bg" className="hover:text-fg">
             bgplus.bg
           </a>
         </div>
