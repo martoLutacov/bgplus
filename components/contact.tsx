@@ -421,7 +421,7 @@ export function Footer() {
         <div className="flex items-center gap-4">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo-light.png" alt="TV BG+" className="h-8 w-auto" />
-          <span>© {new Date().getFullYear()} Национална телевизия БГ+</span>
+          <span>© {new Date().getFullYear()} Национална телевизия БГ+. Всички права запазени.</span>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
           <a href={contact.phoneHref} className="hover:text-fg">
@@ -434,6 +434,17 @@ export function Footer() {
             bgplus.bg
           </a>
         </div>
+      </div>
+      <div className="container-page border-t border-white/[0.06] py-5 text-center text-[12px] text-ink-soft/80">
+        Сайтът е изработен от{" "}
+        <a
+          href="https://lutacovtechlabs.eu"
+          target="_blank"
+          rel="noopener"
+          className="font-medium text-ink-soft underline-offset-4 transition-colors hover:text-gold-300 hover:underline"
+        >
+          BL Studio
+        </a>
       </div>
     </footer>
   );
