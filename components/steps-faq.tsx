@@ -13,23 +13,21 @@ export function Steps() {
   const line = useTransform(scrollYProgress, [0, 1], [reduce ? 1 : 0, 1]);
 
   return (
-    <section className="bg-white py-24 sm:py-32" aria-labelledby="steps-title">
+    <section className="bg-black py-24 sm:py-32" aria-labelledby="steps-title">
       <div className="container-page">
         <Reveal className="mx-auto max-w-3xl text-center">
           <Eyebrow>Как да започнете</Eyebrow>
-          <SectionTitle className="mt-4">
-            <span id="steps-title">Три стъпки до Вашата кампания.</span>
-          </SectionTitle>
+          <SectionTitle id="steps-title" className="mt-4" text="Три стъпки до Вашата кампания." />
         </Reveal>
 
         <div ref={ref} className="relative mt-16">
           {/* Линия, която се „изчертава“ при скрол: вертикална на мобилно, хоризонтална на десктоп */}
-          <div aria-hidden className="absolute bottom-6 left-[23px] top-6 w-px bg-black/[0.08] md:hidden">
+          <div aria-hidden className="absolute bottom-6 left-[23px] top-6 w-px bg-white/[0.08] md:hidden">
             <motion.div className="bg-gold-gradient size-full origin-top" style={{ scaleY: line }} />
           </div>
           <div
             aria-hidden
-            className="absolute left-[calc(100%/6)] right-[calc(100%/6)] top-6 hidden h-px bg-black/[0.08] md:block"
+            className="absolute left-[calc(100%/6)] right-[calc(100%/6)] top-6 hidden h-px bg-white/[0.08] md:block"
           >
             <motion.div className="bg-gold-gradient size-full origin-left" style={{ scaleX: line }} />
           </div>
@@ -37,7 +35,7 @@ export function Steps() {
           <Stagger as="div" className="relative grid gap-10 md:grid-cols-3 md:gap-8" step={0.15}>
             {steps.map((s, i) => (
               <motion.div key={s.title} variants={fadeUp} className="flex gap-6 md:flex-col md:items-center md:text-center">
-                <span className="relative z-10 grid size-12 shrink-0 place-items-center rounded-full bg-ink text-[17px] font-semibold text-white ring-8 ring-white">
+                <span className="relative z-10 grid size-12 shrink-0 place-items-center rounded-full bg-gold-gradient text-[17px] font-semibold text-ink ring-8 ring-black">
                   {i + 1}
                 </span>
                 <div>
@@ -56,20 +54,18 @@ export function Steps() {
 export function Faq() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section id="chzv" className="bg-mist py-24 sm:py-32" aria-labelledby="chzv-title">
+    <section id="chzv" className="bg-surface py-24 sm:py-32" aria-labelledby="chzv-title">
       <div className="container-page max-w-4xl">
         <Reveal className="text-center">
           <Eyebrow>ЧЗВ</Eyebrow>
-          <SectionTitle className="mt-4">
-            <span id="chzv-title">Често задавани въпроси.</span>
-          </SectionTitle>
+          <SectionTitle id="chzv-title" className="mt-4" text="Често задавани въпроси." />
         </Reveal>
 
         <Stagger className="mt-14 space-y-3" step={0.06}>
           {faq.map((item, i) => {
             const isOpen = open === i;
             return (
-              <motion.div key={item.q} variants={fadeUp} className="rounded-3xl bg-white">
+              <motion.div key={item.q} variants={fadeUp} className="rounded-3xl bg-card">
                 <h3>
                   <button
                     type="button"

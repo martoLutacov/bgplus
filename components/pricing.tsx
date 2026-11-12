@@ -2,21 +2,28 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { adPackages, adPackagesFootnote, formatPrice, services, sponsorships, vatNote } from "@/data/pricing";
+import {
+  adPackages,
+  adPackagesFootnote,
+  formatPrice,
+  formatRowPrice,
+  priceList,
+  priceListFootnote,
+  sponsorships,
+  vatNote,
+} from "@/data/pricing";
 import { useInquiry } from "./inquiry-context";
-import { easeApple, fadeUp, Reveal, Stagger } from "./motion";
+import { easeApple, fadeUp, Reveal, rise3d, Stagger } from "./motion";
 import { buttonClass, Eyebrow, Icon, SectionTitle } from "./ui";
 
 export function Packages() {
   const { choose } = useInquiry();
   return (
-    <section id="paketi" className="bg-mist py-24 sm:py-32" aria-labelledby="paketi-title">
+    <section id="paketi" className="bg-surface py-24 sm:py-32" aria-labelledby="paketi-title">
       <div className="container-page">
         <Reveal className="mx-auto max-w-3xl text-center">
           <Eyebrow>Рекламни пакети · 30-секунден клип</Eyebrow>
-          <SectionTitle className="mt-4">
-            <span id="paketi-title">Изберете присъствието, което отговаря на целите Ви.</span>
-          </SectionTitle>
+          <SectionTitle id="paketi-title" className="mt-4" text="Изберете присъствието, което отговаря на целите Ви." />
           <p className="mt-5 text-[17px] text-ink-soft">{vatNote}</p>
         </Reveal>
 
@@ -24,13 +31,13 @@ export function Packages() {
           {adPackages.map((p) => (
             <motion.article
               key={p.id}
-              variants={fadeUp}
+              variants={rise3d}
               whileHover={{ y: -6 }}
               transition={{ type: "spring", stiffness: 300, damping: 26 }}
               className={`relative flex flex-col rounded-[28px] p-8 sm:p-10 ${
                 p.featured
-                  ? "bg-ink text-white shadow-[0_40px_80px_-40px_rgba(0,0,0,0.6)] lg:-my-4 lg:py-14"
-                  : "bg-white text-ink"
+                  ? "bg-feature text-white shadow-[0_40px_80px_-40px_rgba(0,0,0,0.6)] lg:-my-4 lg:py-14"
+                  : "bg-card text-fg"
               }`}
             >
               {p.featured && (
@@ -44,7 +51,7 @@ export function Packages() {
                   </span>
                 </>
               )}
-              <p className={`text-[13px] font-semibold uppercase tracking-[0.12em] ${p.featured ? "text-gold-300" : "text-gold-700"}`}>
+              <p className={`text-[13px] font-semibold uppercase tracking-[0.12em] ${p.featured ? "text-gold-300" : "text-gold-400"}`}>
                 Пакет
               </p>
               <h3 className="mt-2 text-[28px] font-semibold leading-tight tracking-headline">„{p.name}“</h3>
@@ -54,7 +61,7 @@ export function Packages() {
                 </span>
                 <span className={p.featured ? "text-white/60" : "text-ink-soft"}>/ {p.period}</span>
               </p>
-              <p className={`mt-3 text-[17px] font-medium ${p.featured ? "text-white" : "text-ink"}`}>
+              <p className={`mt-3 text-[17px] font-medium ${p.featured ? "text-white" : "text-fg"}`}>
                 {p.airings} излъчвания месечно
               </p>
               <p className={`mt-5 flex-1 text-pretty text-[15.5px] leading-relaxed ${p.featured ? "text-white/65" : "text-ink-soft"}`}>
@@ -88,15 +95,15 @@ function SponsorCard({ s, index }: { s: (typeof sponsorships)[number]; index: nu
 
   return (
     <Reveal
-      className={`relative overflow-hidden rounded-[32px] ${dark ? "bg-ink text-white" : "bg-white text-ink ring-1 ring-black/[0.06]"}`}
+      className={`relative overflow-hidden rounded-[32px] ${dark ? "bg-feature text-white" : "bg-card text-fg ring-1 ring-white/[0.06]"}`}
     >
       <div className="grid gap-10 p-8 sm:p-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
         <div>
-          <p className={`text-[13px] font-semibold uppercase tracking-[0.12em] ${dark ? "text-gold-300" : "text-gold-700"}`}>
+          <p className={`text-[13px] font-semibold uppercase tracking-[0.12em] ${dark ? "text-gold-300" : "text-gold-400"}`}>
             {index === 0 ? "Специално спонсорско предложение" : "Дългосрочно партньорство"}
           </p>
           <h3 className="mt-3 text-[clamp(2.2rem,4vw,3.25rem)] font-semibold leading-[1.04] tracking-display">„{s.name}“</h3>
-          <p className={`mt-3 text-[19px] font-medium leading-snug ${dark ? "text-white/85" : "text-ink"}`}>{s.tagline}</p>
+          <p className={`mt-3 text-[19px] font-medium leading-snug ${dark ? "text-white/85" : "text-fg"}`}>{s.tagline}</p>
           <p className={`mt-5 text-pretty text-[15.5px] leading-relaxed ${dark ? "text-white/60" : "text-ink-soft"}`}>{s.description}</p>
 
           <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-3">
@@ -112,8 +119,8 @@ function SponsorCard({ s, index }: { s: (typeof sponsorships)[number]; index: nu
 
           <ul className="mt-8 space-y-2.5">
             {s.includes.map((item) => (
-              <li key={item} className={`flex gap-3 text-[15px] ${dark ? "text-white/80" : "text-ink"}`}>
-                <Icon name="check" className={`mt-0.5 size-[18px] shrink-0 ${dark ? "text-gold-300" : "text-gold-600"}`} />
+              <li key={item} className={`flex gap-3 text-[15px] ${dark ? "text-white/80" : "text-fg"}`}>
+                <Icon name="check" className={`mt-0.5 size-[18px] shrink-0 ${dark ? "text-gold-300" : "text-gold-400"}`} />
                 {item}
               </li>
             ))}
@@ -159,7 +166,7 @@ function SponsorCard({ s, index }: { s: (typeof sponsorships)[number]; index: nu
                   <span className="relative flex flex-wrap items-center gap-2 font-medium">
                     <span
                       className={`grid size-[18px] place-items-center rounded-full ring-1 transition-colors ${
-                        active ? "bg-gold-gradient ring-transparent" : dark ? "ring-white/30" : "ring-black/20"
+                        active ? "bg-gold-gradient ring-transparent" : dark ? "ring-white/30" : "ring-white/20"
                       }`}
                     >
                       {active && <span className="size-1.5 rounded-full bg-ink" />}
@@ -168,7 +175,7 @@ function SponsorCard({ s, index }: { s: (typeof sponsorships)[number]; index: nu
                     {t.badge && (
                       <span
                         className={`rounded-full px-2 py-0.5 text-[11px] font-semibold ${
-                          dark ? "bg-gold-400/15 text-gold-300" : "bg-gold-200/60 text-gold-800"
+                          dark ? "bg-gold-400/15 text-gold-300" : "bg-gold-400/15 text-gold-300"
                         }`}
                       >
                         {t.badge}
@@ -216,7 +223,7 @@ function SponsorCard({ s, index }: { s: (typeof sponsorships)[number]; index: nu
               <a
                 href={s.brochure}
                 download
-                className={buttonClass(dark ? "outline-light" : "ghost", `!py-3.5 ${dark ? "" : "ring-1 ring-inset ring-black/10"}`)}
+                className={buttonClass(dark ? "outline-light" : "ghost", `!py-3.5 ${dark ? "" : "ring-1 ring-inset ring-white/10"}`)}
               >
                 <Icon name="download" className="size-4" />
                 Брошура
@@ -231,13 +238,11 @@ function SponsorCard({ s, index }: { s: (typeof sponsorships)[number]; index: nu
 
 export function Sponsorships() {
   return (
-    <section id="sponsorstvo" className="bg-white py-24 sm:py-32" aria-labelledby="sponsorstvo-title">
+    <section id="sponsorstvo" className="bg-black py-24 sm:py-32" aria-labelledby="sponsorstvo-title">
       <div className="container-page">
         <Reveal className="max-w-3xl">
           <Eyebrow>Спонсорство на предавания</Eyebrow>
-          <SectionTitle className="mt-4">
-            <span id="sponsorstvo-title">Вашият бранд като партньор на съдържание с ценност.</span>
-          </SectionTitle>
+          <SectionTitle id="sponsorstvo-title" className="mt-4" text="Вашият бранд като партньор на съдържание с ценност." />
           <p className="mt-5 max-w-2xl text-pretty text-[18px] leading-relaxed text-ink-soft">
             Присъствайте последователно във формат, близък до Вашите ценности, продукти и аудитория. Конкретният спонсорски
             инвентар и ексклузивните права се определят в индивидуалния договор.
@@ -253,73 +258,53 @@ export function Sponsorships() {
   );
 }
 
-export function Services() {
+export function PriceList() {
   const { choose } = useInquiry();
-  const [open, setOpen] = useState<string | null>(services[0].id);
 
   return (
-    <section className="bg-mist py-24 sm:py-32" aria-labelledby="uslugi-title">
-      <div className="container-page grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
-        <Reveal className="lg:sticky lg:top-28 lg:self-start">
-          <Eyebrow>Индивидуални решения</Eyebrow>
-          <SectionTitle className="mt-4">
-            <span id="uslugi-title">Общи рекламни услуги.</span>
-          </SectionTitle>
-          <p className="mt-5 text-pretty text-[18px] leading-relaxed text-ink-soft">
-            Не откривате точния формат? Ще разработим предложение, съобразено с Вашия бюджет, аудитория и цели.
-          </p>
-          <button type="button" onClick={() => choose("service:custom")} className={buttonClass("dark", "mt-8")}>
-            Поискайте индивидуална оферта
-            <Icon name="arrow" className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-          </button>
-        </Reveal>
+    <section id="cenorazpis" className="bg-surface py-24 sm:py-32" aria-labelledby="cenorazpis-title">
+      <div className="container-page">
+        <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+          <Reveal className="max-w-3xl">
+            <Eyebrow>Ценоразпис</Eyebrow>
+            <SectionTitle id="cenorazpis-title" className="mt-4" text="Всички цени. На едно място." />
+            <p className="mt-5 max-w-2xl text-pretty text-[18px] leading-relaxed text-ink-soft">{priceListFootnote}</p>
+          </Reveal>
+          <Reveal delay={0.1} className="flex shrink-0 flex-wrap gap-3">
+            <button type="button" onClick={() => choose("service:custom")} className={buttonClass("dark")}>
+              Поискайте индивидуална оферта
+              <Icon name="arrow" className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+            </button>
+          </Reveal>
+        </div>
 
-        <Stagger className="divide-y divide-black/[0.08] rounded-[28px] bg-white px-6 sm:px-8" step={0.05}>
-          {services.map((s) => {
-            const isOpen = open === s.id;
-            return (
-              <motion.div key={s.id} variants={fadeUp}>
-                <h3>
-                  <button
-                    type="button"
-                    onClick={() => setOpen(isOpen ? null : s.id)}
-                    aria-expanded={isOpen}
-                    aria-controls={`svc-${s.id}`}
-                    className="flex w-full items-center justify-between gap-6 py-6 text-left"
-                  >
-                    <span className="text-[18px] font-semibold tracking-[-0.01em]">{s.name}</span>
-                    <span className="flex shrink-0 items-center gap-4">
-                      <span className="hidden text-[14px] text-ink-soft sm:inline">{s.pricing}</span>
-                      <motion.span
-                        animate={{ rotate: isOpen ? 45 : 0 }}
-                        transition={{ duration: 0.4, ease: easeApple }}
-                        className="grid size-8 place-items-center rounded-full bg-mist"
-                      >
-                        <Icon name="plus" className="size-4" />
-                      </motion.span>
-                    </span>
-                  </button>
-                </h3>
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      id={`svc-${s.id}`}
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.45, ease: easeApple }}
-                      className="overflow-hidden"
-                    >
-                      <p className="max-w-xl pb-6 text-[15.5px] leading-relaxed text-ink-soft">
-                        {s.description}
-                        <span className="mt-2 block font-medium text-gold-700 sm:hidden">{s.pricing}</span>
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            );
-          })}
+        <Stagger className="mt-14 grid gap-4 md:grid-cols-2 xl:grid-cols-3" step={0.08}>
+          {priceList.map((g) => (
+            <motion.article
+              key={g.id}
+              variants={rise3d}
+              className="flex flex-col rounded-[28px] bg-card p-7 ring-1 ring-white/[0.06] transition-colors duration-500 hover:ring-gold-400/30 sm:p-8"
+            >
+              <h3 className="text-[21px] font-semibold leading-tight tracking-headline">{g.title}</h3>
+              {g.note && <p className="mt-2 text-[14px] leading-snug text-ink-soft">{g.note}</p>}
+              <dl className="mt-6 flex-1 divide-y divide-white/[0.07]">
+                {g.rows.map((r) => (
+                  <div key={r.name} className="flex items-baseline justify-between gap-4 py-3.5">
+                    <dt className="min-w-0">
+                      <span className="block text-[15.5px] font-medium text-fg">{r.name}</span>
+                      {r.detail && <span className="mt-0.5 block text-[13px] leading-snug text-ink-soft">{r.detail}</span>}
+                    </dt>
+                    <dd className="shrink-0 text-right">
+                      <span className="text-gold-gradient whitespace-nowrap text-[17px] font-semibold tabular-nums">
+                        {formatRowPrice(r.price)}
+                      </span>
+                      {r.unit && <span className="ml-1 text-[13px] text-ink-soft">{r.unit}</span>}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </motion.article>
+          ))}
         </Stagger>
       </div>
     </section>

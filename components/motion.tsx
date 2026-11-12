@@ -8,12 +8,27 @@ import { groupDigits } from "@/data/pricing";
 export const easeApple = [0.22, 1, 0.36, 1] as const;
 
 export const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 32, filter: "blur(8px)" },
+  hidden: { opacity: 0, y: 56, scale: 0.97, filter: "blur(10px)" },
   show: {
     opacity: 1,
     y: 0,
+    scale: 1,
     filter: "blur(0px)",
-    transition: { duration: 0.9, ease: easeApple },
+    transition: { duration: 1.2, ease: easeApple },
+  },
+};
+
+/** Карти, които се „изправят“ в перспектива, докато влизат в екрана */
+export const rise3d: Variants = {
+  hidden: { opacity: 0, y: 90, rotateX: 18, scale: 0.94, transformPerspective: 1400, filter: "blur(6px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    scale: 1,
+    transformPerspective: 1400,
+    filter: "blur(0px)",
+    transition: { duration: 1.3, ease: easeApple },
   },
 };
 
@@ -121,5 +136,47 @@ export function CountUp({
         {suffix}
       </span>
     </span>
+  );
+}
+
+/** Заглавие, чиито думи се изнасят нагоре изпод невидима маска */
+export function MaskTitle({
+  text,
+  id,
+  className = "",
+  as = "h2",
+}: {
+  text: string;
+  id?: string;
+  className?: string;
+  as?: "h2" | "h3";
+}) {
+  const Comp = motion[as];
+  const words = text.split(" ");
+  return (
+    <Comp
+      id={id}
+      className={className}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, margin: "0px 0px -12% 0px" }}
+      variants={stagger(0.045)}
+      aria-label={text}
+    >
+      {words.map((w, i) => (
+        <span key={i} aria-hidden className="inline-block overflow-hidden pb-[0.12em] -mb-[0.12em] align-bottom">
+          <motion.span
+            className="inline-block whitespace-pre"
+            variants={{
+              hidden: { y: "110%", rotate: 3, opacity: 0 },
+              show: { y: "0%", rotate: 0, opacity: 1, transition: { duration: 1.1, ease: easeApple } },
+            }}
+          >
+            {w}
+            {i < words.length - 1 ? " " : ""}
+          </motion.span>
+        </span>
+      ))}
+    </Comp>
   );
 }

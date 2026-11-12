@@ -1,3 +1,6 @@
+"use client";
+
+import { MaskTitle } from "./motion";
 import type { ComponentProps, ReactNode } from "react";
 
 type Variant = "primary" | "dark" | "ghost" | "light" | "outline-light";
@@ -8,9 +11,9 @@ const base =
 const variants: Record<Variant, string> = {
   primary:
     "bg-gold-gradient text-ink shadow-[0_8px_24px_-10px_rgba(168,129,63,0.7)] hover:shadow-[0_14px_34px_-12px_rgba(168,129,63,0.85)] hover:-translate-y-0.5",
-  dark: "bg-ink text-white hover:bg-black hover:-translate-y-0.5",
-  ghost: "text-ink hover:bg-black/5",
-  light: "bg-white text-ink hover:bg-white/90 hover:-translate-y-0.5",
+  dark: "bg-white text-black hover:bg-white/90 hover:-translate-y-0.5",
+  ghost: "text-fg hover:bg-white/5",
+  light: "bg-white text-black hover:bg-white/90 hover:-translate-y-0.5",
   "outline-light": "text-white ring-1 ring-inset ring-white/40 hover:bg-white/10 hover:ring-white/70",
 };
 
@@ -28,19 +31,19 @@ export function ButtonLink({
 
 export function Eyebrow({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
-    <p className={`text-[13px] font-semibold uppercase tracking-[0.14em] text-gold-700 ${className}`}>
+    <p className={`text-[13px] font-semibold uppercase tracking-[0.14em] text-gold-400 ${className}`}>
       {children}
     </p>
   );
 }
 
-export function SectionTitle({ children, className = "" }: { children: ReactNode; className?: string }) {
+export function SectionTitle({ text, id, className = "" }: { text: string; id?: string; className?: string }) {
   return (
-    <h2
+    <MaskTitle
+      text={text}
+      id={id}
       className={`text-balance text-[clamp(2rem,4.6vw,3.5rem)] font-semibold leading-[1.06] tracking-headline ${className}`}
-    >
-      {children}
-    </h2>
+    />
   );
 }
 

@@ -20,7 +20,7 @@ function useMedia(query: string) {
 
 function FormatCard({ f, i }: { f: (typeof formats)[number]; i: number }) {
   return (
-    <article className="group relative flex h-full w-full flex-col overflow-hidden rounded-[28px] bg-ink text-white">
+    <article className="group relative flex h-full w-full flex-col overflow-hidden rounded-[28px] bg-card text-white ring-1 ring-white/[0.06]">
       <div className={`relative aspect-[16/11] max-h-[36vh] w-full overflow-hidden bg-gradient-to-br ${f.tone}`}>
         {f.image ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -46,7 +46,7 @@ function FormatCard({ f, i }: { f: (typeof formats)[number]; i: number }) {
             </svg>
           </div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent" aria-hidden />
+        <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" aria-hidden />
       </div>
       <div className="relative flex flex-1 flex-col p-7 sm:p-8">
         <p className="text-[13px] font-semibold tabular-nums text-gold-300">0{i + 1}</p>
@@ -61,9 +61,7 @@ function Header() {
   return (
     <Reveal className="max-w-3xl">
       <Eyebrow>Рекламни формати</Eyebrow>
-      <SectionTitle className="mt-4">
-        <span id="formati-title">Изберете начина, по който да разкажете своята история.</span>
-      </SectionTitle>
+      <SectionTitle id="formati-title" className="mt-4" text="Изберете начина, по който да разкажете своята история." />
     </Reveal>
   );
 }
@@ -96,7 +94,7 @@ export function Formats() {
     <section
       id="formati"
       ref={ref}
-      className={`relative bg-white ${pinned ? "" : "py-24 sm:py-32"}`}
+      className={`relative bg-black ${pinned ? "" : "py-24 sm:py-32"}`}
       style={pinned ? { height: `calc(100vh + ${distance}px)` } : undefined}
       aria-labelledby="formati-title"
     >
@@ -117,7 +115,7 @@ export function Formats() {
             ))}
           </motion.div>
           <div className="container-page mt-10">
-            <div className="h-[3px] w-40 overflow-hidden rounded-full bg-black/[0.08]" aria-hidden>
+            <div className="h-[3px] w-40 overflow-hidden rounded-full bg-white/[0.08]" aria-hidden>
               <motion.div className="h-full origin-left bg-gold-gradient" style={{ scaleX: bar }} />
             </div>
           </div>

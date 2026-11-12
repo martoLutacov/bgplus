@@ -3,18 +3,16 @@
 import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { useRef, type MouseEvent } from "react";
 import { pillars, statement, stats } from "@/data/site";
-import { CountUp, fadeUp, Reveal, Stagger, StaggerItem } from "./motion";
+import { CountUp, Reveal, rise3d, Stagger, StaggerItem } from "./motion";
 import { Eyebrow, Icon, SectionTitle } from "./ui";
 
 export function Stats() {
   return (
-    <section className="bg-white py-24 sm:py-32" aria-labelledby="stats-title">
+    <section className="bg-black py-24 sm:py-32" aria-labelledby="stats-title">
       <div className="container-page">
         <Reveal className="mx-auto max-w-3xl text-center">
           <Eyebrow>Обхват</Eyebrow>
-          <SectionTitle className="mt-4">
-            <span id="stats-title">Национално присъствие. Реални възможности за Вашия бранд.</span>
-          </SectionTitle>
+          <SectionTitle id="stats-title" className="mt-4" text="Национално присъствие. Реални възможности за Вашия бранд." />
         </Reveal>
 
         <Stagger className="mt-16 grid gap-4 sm:grid-cols-3" step={0.12}>
@@ -51,12 +49,12 @@ function SpotlightCard({
   };
   return (
     <motion.div
-      variants={fadeUp}
+      variants={rise3d}
       onMouseMove={onMove}
       whileHover={{ y: -4 }}
       transition={{ type: "spring", stiffness: 300, damping: 26 }}
       className={`group relative overflow-hidden rounded-[28px] p-8 sm:p-10 ${
-        dark ? "bg-ink text-white" : "bg-white text-ink"
+        dark ? "bg-feature text-white" : "bg-card text-fg"
       } shadow-[0_1px_0_rgba(0,0,0,0.03)] transition-shadow duration-500 hover:shadow-[0_30px_60px_-30px_rgba(0,0,0,0.25)] ${className}`}
     >
       <div
@@ -89,13 +87,11 @@ const spans = [
 
 export function Bento() {
   return (
-    <section id="predimstva" className="bg-mist py-24 sm:py-32" aria-labelledby="predimstva-title">
+    <section id="predimstva" className="bg-surface py-24 sm:py-32" aria-labelledby="predimstva-title">
       <div className="container-page">
         <Reveal className="max-w-3xl">
           <Eyebrow>Защо БГ+</Eyebrow>
-          <SectionTitle className="mt-4">
-            <span id="predimstva-title">Повече от рекламно време. Медиен партньор за Вашия растеж.</span>
-          </SectionTitle>
+          <SectionTitle id="predimstva-title" className="mt-4" text="Повече от рекламно време. Медиен партньор за Вашия растеж." />
         </Reveal>
 
         <Stagger className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-6" step={0.09}>
@@ -107,13 +103,13 @@ export function Bento() {
                 <div className={big ? "flex h-full min-h-[22rem] flex-col justify-between" : wide ? "sm:flex sm:items-center sm:gap-10" : ""}>
                   <div
                     className={`grid size-12 shrink-0 place-items-center rounded-2xl ${
-                      big ? "bg-gold-gradient text-ink" : "bg-mist text-gold-700"
+                      big ? "bg-gold-gradient text-ink" : "bg-mist text-gold-400"
                     }`}
                   >
                     <Icon name={p.icon} className="size-6" />
                   </div>
                   <div className={big ? "" : wide ? "mt-6 sm:mt-0" : "mt-8"}>
-                    <p className={`text-[13px] font-semibold tabular-nums ${big ? "text-gold-300" : "text-gold-700"}`}>
+                    <p className={`text-[13px] font-semibold tabular-nums ${big ? "text-gold-300" : "text-gold-400"}`}>
                       0{i + 1}
                     </p>
                     <h3
@@ -158,13 +154,13 @@ export function Statement() {
   const words = statement.split(" ");
 
   return (
-    <section className="bg-white py-28 sm:py-40" aria-label="Една инвестиция. Повече възможности.">
+    <section className="bg-black py-28 sm:py-40" aria-label="Една инвестиция. Повече възможности.">
       <div className="container-page">
         <Reveal>
           <Eyebrow>Една инвестиция. Повече възможности.</Eyebrow>
         </Reveal>
         <div ref={ref} className="mt-8 max-w-5xl">
-          <p className="text-[clamp(1.75rem,4vw,3.25rem)] font-semibold leading-[1.15] tracking-headline text-ink">
+          <p className="text-[clamp(1.75rem,4vw,3.25rem)] font-semibold leading-[1.15] tracking-headline text-fg">
             {reduce
               ? statement
               : words.map((w, i) => (

@@ -10,8 +10,8 @@ export function Presentation() {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "center center"] });
-  const scale = useTransform(scrollYProgress, [0, 1], reduce ? [1, 1] : [0.82, 1]);
-  const radius = useTransform(scrollYProgress, [0, 1], reduce ? [28, 28] : [56, 28]);
+  const scale = useTransform(scrollYProgress, [0, 1], reduce ? [1, 1] : [0.68, 1]);
+  const radius = useTransform(scrollYProgress, [0, 1], reduce ? [28, 28] : [80, 28]);
   const glow = useTransform(scrollYProgress, [0.4, 1], [0, 1]);
 
   return (
