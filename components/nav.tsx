@@ -14,6 +14,7 @@ export function Nav() {
 
   useMotionValueEvent(scrollY, "change", (y) => {
     setOnDark(y < window.innerHeight - 64);
+    if (y < window.innerHeight * 0.5) setActive(null);
   });
 
   useEffect(() => {

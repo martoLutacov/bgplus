@@ -70,7 +70,7 @@ function mailtoHref(d: Inquiry, serviceLabel: string) {
 }
 
 export function Contact() {
-  const { selected, setSelected } = useInquiry();
+  const { selected, setSelected, note } = useInquiry();
   const [data, setData] = useState<Inquiry>(emptyInquiry);
   const [errors, setErrors] = useState<InquiryErrors>({});
   const [status, setStatus] = useState<Status>("idle");
@@ -86,6 +86,11 @@ export function Contact() {
     const t = setTimeout(() => setFlash(false), 1600);
     return () => clearTimeout(t);
   }, [selected]);
+
+  // Изчисление от калкулатора попълва съобщението
+  useEffect(() => {
+    if (note) setData((d) => ({ ...d, message: note.text }));
+  }, [note]);
 
   const set = <K extends keyof Inquiry>(k: K, v: Inquiry[K]) => {
     setData((d) => ({ ...d, [k]: v }));

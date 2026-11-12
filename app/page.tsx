@@ -1,3 +1,4 @@
+import { Calculator } from "@/components/calculator";
 import { Contact, Footer } from "@/components/contact";
 import { Formats } from "@/components/formats";
 import { Hero } from "@/components/hero";
@@ -59,6 +60,7 @@ export default function Page() {
         <Statement />
         <Presentation />
         <Packages />
+        <Calculator />
         <Sponsorships />
         <PriceList />
         <Steps />
