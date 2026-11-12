@@ -67,9 +67,9 @@ export function Presentation() {
         </div>
 
         <Reveal className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row" delay={0.1}>
-          <a href={media.tariffPdf} download className={buttonClass("light", "!px-7 !py-3.5")}>
-            <Icon name="download" className="size-4" />
-            Изтеглете рекламната тарифа (PDF)
+          <a href="#cenorazpis" className={buttonClass("light", "!px-7 !py-3.5")}>
+            Вижте ценоразписа
+            <Icon name="arrow" className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
           </a>
           <a href="#kontakt" className={buttonClass("outline-light", "!px-7 !py-3.5")}>
             Поискайте медийна презентация
